@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TaskBuddy - Task Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <header>
+      <div class="header-left">
+        <h1>TaskBuddy</h1>
+        <h3>Interactive Task Manager</h3>
+        <p>A partner which will never let you forget something important</p>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="sun-emoji">☀️</span>
+        <span class="moon-emoji">🌙</span>
+      </button>
+    </header>
+
+    <section class="card" aria-labelledby="add-task-heading">
+      <h2 id="add-task-heading" class="section-title">Add new task</h2>
+      <form class="add-task-form" id="taskForm">
+        <div class="input-group">
+          <label for="taskInput">Task title</label>
+          <input type="text" id="taskInput" placeholder="E.g., Grab some fresh coffee beans..." autocomplete="off"
+            required>
+        </div>
+        <div class="input-group">
+          <label for="categoryInput">Category</label>
+          <select id="categoryInput">
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+            <option value="Study">Study</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary">Add task</button>
+      </form>
+      <!-- <p class="tip-text">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        Tip: Drop elements anywhere inside the structural list columns to seamlessly organize them.
+      </p> -->
+    </section>
+
+    <section class="card" aria-label="Task filters and parameters">
+      <div class="filters-row">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search parameters...">
+        <select id="filterCategory" class="category-filter">
+          <option value="All">All categories</option>
+          <option value="Personal">Personal</option>
+          <option value="Work">Work</option>
+          <option value="Study">Study</option>
+        </select>
+        <button class="btn-outline" id="clearFiltersBtn">Clear Filters</button>
+        <button class="btn-outline" id="clearTasksBtn">Clear All</button>
+      </div>
+      <div class="stats-row">
+        <div class="stat-badge">Pending: <span id="statPending">0</span></div>
+        <div class="stat-badge">Completed: <span id="statCompleted">0</span></div>
+        <div class="stat-badge">Total Balance: <span id="statTotal">0</span></div>
+      </div>
+    </section>
+
+    <section class="task-board" id="taskBoard" aria-label="Project columns iteration grid">
+      <div class="task-column">
+        <div class="column-header">
+          <h3>Pending</h3>
+          <div class="stat-badge"><span id="headerPendingCount">0</span></div>
+        </div>
+        <div class="task-list" id="pendingList" data-status="pending">
+        </div>
+      </div>
+
+      <div class="task-column">
+        <div class="column-header">
+          <h3>Completed</h3>
+          <div class="stat-badge"><span id="headerCompletedCount">0</span></div>
+        </div>
+        <div class="task-list completed-list-style" id="completedList" data-status="completed">
+        </div>
+      </div>
+    </section>
+
+    <div class="grid-2">
+      <section class="card">
+        <h2 class="section-title">Attributes vs Properties</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Interact inside the "Task title" target string
+          sequence. Observe changes detailing runtime object fields against the immutable DOM initialization state
+          representation.</p>
+
+        <div class="code-box">
+          <div class="code-line">input.value: <span class="code-val" id="propValue">""</span></div>
+          <div class="code-line">input.getAttribute("value"): <span class="code-val" id="attrValue">null</span></div>
+          <div class="code-line">hasAttribute("data-demo"): <span class="code-val" id="hasAttrVal">false</span></div>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <button class="btn-outline" id="setAttrBtn">setAttribute()</button>
+          <button class="btn-outline" id="removeAttrBtn">removeAttribute()</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Event Propagation Demo</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Test visual structural flow sequence execution
+          highlighting standard capture/bubbling phases processing engines map browser updates onto.</p>
+
+        <div class="prop-box" id="grandparentBox">
+          <span class="prop-label">Grandparent Target Tree Node</span>
+          <div class="prop-box" id="parentBox">
+            <span class="prop-label">Parent Nested Element Node</span>
+            <button class="btn-primary" id="childBtn" style="margin-top: 12px;">Execute Target Child Event Node</button>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <button class="btn-outline" id="runBubblingBtn">Run Bubbling Cycle</button>
+          <button class="btn-outline" id="runCapturingBtn">Run Capturing Cycle</button>
+        </div>
+        <div class="prop-log" id="propLog">Sequence visualization idle... ready to capture standard events.</div>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2 class="section-title">Browser Rendering Pipeline</h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 10px;">Select layout pipeline metrics
+        visually tracking paint passes structures follow from resource ingestion phases down onto execution windows.</p>
+
+      <div class="pipeline-layout">
+        <div class="pipeline-container" id="pipelineContainer">
+          <div class="pipeline-step active" data-title="HTML Extraction Node"
+            data-desc="Raw HTML data stream is systematically decoded and parsed into structural tree segments.">HTML
+            Extraction Node</div>
+          <div class="pipeline-arrow"><svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M12 5v14M19 12l-7 7-7-7" />
+            </svg></div>
+          <div class="pipeline-step" data-title="Parsing & Context"
+            data-desc="Lexical analyzers break raw code character strings down into valid structural tokens.">Parsing &
+            Context Analysis</div>
+          <div class="pipeline-arrow"><svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M12 5v14M19 12l-7 7-7-7" />
+            </svg></div>
+          <div class="pipeline-step" data-title="Tokenization Layout"
+            data-desc="Structural characters assign explicit semantic context definitions to compiled layout properties.">
+            Tokenization Layout</div>
+          <div class="pipeline-arrow"><svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M12 5v14M19 12l-7 7-7-7" />
+            </svg></div>
+          <div class="pipeline-step" data-title="DOM Tree Assembly"
+            data-desc="Object tree containing fully interactive hierarchical node models mapping document structures out is safely generated.">
+            DOM Tree Assembly</div>
+          <div class="pipeline-arrow"><svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M12 5v14M19 12l-7 7-7-7" />
+            </svg></div>
+          <div class="pipeline-step" data-title="CSS Ingestion Process"
+            data-desc="The runtime layout parsing subsystem evaluates, maps, and matches style sheet definition properties.">
+            CSS Ingestion Process</div>
+          <div class="pipeline-arrow"><svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M12 5v14M19 12l-7 7-7-7" />
+            </svg></div>
+          <div class="pipeline-step" data-title="CSSOM Tree Map"
+            data-desc="The CSSOM Tree is the complete object-based target structure built out of compiled cascade rules layers.">
+            CSSOM Tree Map</div>
+          <div class="pipeline-arrow"><svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M12 5v14M19 12l-7 7-7-7" />
+            </svg></div>
+          <div class="pipeline-step" data-title="DOM + CSSOM Fusion"
+            data-desc="Calculated presentation parameters bind interactive structures directly to style application weights.">
+            DOM + CSSOM Matrix Combination</div>
+          <div class="pipeline-arrow"><svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M12 5v14M19 12l-7 7-7-7" />
+            </svg></div>
+          <div class="pipeline-step" data-title="Render Tree Processing"
+            data-desc="Geometric node passes resolve layout placement calculations and draw updated pixel fields to display frames.">
+            Render Tree Vector Processing</div>
+        </div>
+
+        <div class="pipeline-sticky-box">
+          <div class="pipeline-desc" id="pipelineDesc">
+            <h4 id="pipelineDescTitle">HTML Extraction Node</h4>
+            <span id="pipelineDescText">Raw HTML data stream is systematically decoded and parsed into structural tree
+              segments.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toastNotification" role="alert" aria-live="assertive">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    <span id="toastMessage">State changes saved successfully.</span>
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
